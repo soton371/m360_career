@@ -50,37 +50,51 @@ class SignUpScreen extends StatelessWidget {
 
           //for password
           FadeInUp(
-            child: AppTextField(
-                label: 'Password',
-                hintText: '•••••••••••',
-                obscureText: true,
-                suffixIcon: InkWell(
-                  onTap: (){},
-                  child: const HugeIcon(
-                    icon: HugeIcons.strokeRoundedViewOff,
-                    color: AppColors.hint,
-                  ),
-                ),
-                textEditingController:
-                TextEditingController()),
+            child: ValueListenableBuilder(
+                valueListenable: pass1Hide,
+              builder: (context, value, _) {
+                return AppTextField(
+                    label: 'Password',
+                    hintText: '•••••••••••',
+                    obscureText: value,
+                    suffixIcon: InkWell(
+                      onTap: (){
+                        pass1Hide.value = !value;
+                      },
+                      child: HugeIcon(
+                        icon: value ? HugeIcons.strokeRoundedViewOff : HugeIcons.strokeRoundedView,
+                        color: AppColors.hint,
+                      ),
+                    ),
+                    textEditingController:
+                    TextEditingController());
+              }
+            ),
           ),
           //end for password
 
           //for password
           FadeInUp(
-            child: AppTextField(
-                label: 'Re-Password',
-                hintText: '••••••••••••',
-                obscureText: true,
-                suffixIcon: InkWell(
-                  onTap: (){},
-                  child: const HugeIcon(
-                    icon: HugeIcons.strokeRoundedViewOff,
-                    color: AppColors.hint,
-                  ),
-                ),
-                textEditingController:
-                TextEditingController()),
+            child: ValueListenableBuilder(
+                valueListenable: pass2Hide,
+              builder: (context, value, _) {
+                return AppTextField(
+                    label: 'Re-Password',
+                    hintText: '••••••••••••',
+                    obscureText: value,
+                    suffixIcon: InkWell(
+                      onTap: (){
+                        pass2Hide.value = !value;
+                      },
+                      child: HugeIcon(
+                        icon: value ? HugeIcons.strokeRoundedViewOff : HugeIcons.strokeRoundedView,
+                        color: AppColors.hint,
+                      ),
+                    ),
+                    textEditingController:
+                    TextEditingController());
+              }
+            ),
           ),
           //end for password
 
@@ -123,3 +137,7 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
+
+
+ValueNotifier<bool> pass1Hide = ValueNotifier<bool>(true);
+ValueNotifier<bool> pass2Hide = ValueNotifier<bool>(true);
