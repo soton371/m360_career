@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:m360_career/views/auth/otp_scr.dart';
 import '../../configs/configs.dart';
 import '../../views/auth/auth_header.dart';
@@ -52,6 +53,14 @@ class SignUpScreen extends StatelessWidget {
             child: AppTextField(
                 label: 'Password',
                 hintText: '•••••••••••',
+                obscureText: true,
+                suffixIcon: InkWell(
+                  onTap: (){},
+                  child: const HugeIcon(
+                    icon: HugeIcons.strokeRoundedViewOff,
+                    color: AppColors.hint,
+                  ),
+                ),
                 textEditingController:
                 TextEditingController()),
           ),
@@ -62,6 +71,14 @@ class SignUpScreen extends StatelessWidget {
             child: AppTextField(
                 label: 'Re-Password',
                 hintText: '••••••••••••',
+                obscureText: true,
+                suffixIcon: InkWell(
+                  onTap: (){},
+                  child: const HugeIcon(
+                    icon: HugeIcons.strokeRoundedViewOff,
+                    color: AppColors.hint,
+                  ),
+                ),
                 textEditingController:
                 TextEditingController()),
           ),

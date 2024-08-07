@@ -8,11 +8,14 @@ class AppTextField extends StatelessWidget {
   const AppTextField({super.key,
     this.obscureText,
     this.keyboardType,
-    required this.label, required this.hintText, required this.textEditingController});
+    required this.label, required this.hintText, required this.textEditingController,
+    this.suffixIcon
+  });
   final String label, hintText;
   final TextEditingController textEditingController;
   final bool? obscureText;
   final TextInputType? keyboardType;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class AppTextField extends StatelessWidget {
             textCapitalization: TextCapitalization.sentences,
             obscureText: obscureText ?? false,
             decoration: InputDecoration(
+              suffixIcon: suffixIcon,
               hintText: hintText,
               isDense: true,
               filled: true,
