@@ -18,33 +18,35 @@ Future<String> postResponse(
 
   try {
     final response = await http
-        .post(uriUrl, body: payload == null ? null : jsonEncode(payload), headers: header)
-        .timeout(const Duration(seconds: 15));
+        .post(uriUrl, body: payload == null ? null : jsonEncode(payload), headers: header);
     logger.i("postResponse body: ${response.body}");
     return response.body;
   } on TimeoutException {
+    logger.e("postResponse TimeoutException");
     return '''
 {
    "success": false,
-   "title": "Timeout",
+   "title": "Timeout!",
    "message": "The request timed out. Please try again later.",
    "data": null
 }
 ''';
   } on SocketException {
+    logger.e("postResponse SocketException");
     return '''
 {
    "success": false,
-   "title": "Connection Failed",
+   "title": "Connection Failed!",
    "message": "Unable to connect to the server. Please check your network connection and try again.",
    "data": null
 }
 ''';
   } catch (e) {
+    logger.e("postResponse exception: $e");
     return '''
 {
    "success": false,
-   "title": "Failed",
+   "title": "Failed!",
    "message": "An error occurred while communicating with the server",
    "data": null
 }

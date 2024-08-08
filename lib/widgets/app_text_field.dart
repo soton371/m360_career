@@ -9,13 +9,17 @@ class AppTextField extends StatelessWidget {
     this.obscureText,
     this.keyboardType,
     required this.label, required this.hintText, required this.textEditingController,
-    this.suffixIcon
+    this.suffixIcon,
+    this.validator,
+    this.textInputAction
   });
   final String label, hintText;
   final TextEditingController textEditingController;
   final bool? obscureText;
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
+  final String? Function(String?)? validator;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +38,11 @@ class AppTextField extends StatelessWidget {
           ),
           child: TextFormField(
             controller: textEditingController,
+            validator: validator,
             keyboardType: keyboardType,
             textCapitalization: TextCapitalization.sentences,
             obscureText: obscureText ?? false,
+            textInputAction: textInputAction,
             decoration: InputDecoration(
               suffixIcon: suffixIcon,
               hintText: hintText,

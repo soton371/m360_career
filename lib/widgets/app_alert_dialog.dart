@@ -10,6 +10,7 @@ Future<void> appDialog(BuildContext context,
       List<Widget>? actions
     }) async {
   final alert = AlertDialog(
+    backgroundColor: Colors.white,
     actionsAlignment: MainAxisAlignment.center,
     content: Column(
       mainAxisSize: MainAxisSize.min,
