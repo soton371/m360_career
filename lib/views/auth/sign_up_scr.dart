@@ -105,7 +105,10 @@ class SignUpScreen extends StatelessWidget {
                       validator: (v){
                         if(v == null || v.isEmpty){
                           return 'Enter your password';
-                        }else{
+                        }else if(v.trim().length<6){
+                          return 'Password length must be more than 6 characters';
+                        }
+                        else{
                           return null;
                         }
                       },

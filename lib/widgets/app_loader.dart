@@ -6,6 +6,7 @@ import '../configs/configs.dart';
 
 Future<void> appLoader(BuildContext context, {String? msg}) async {
   final alert = AlertDialog.adaptive(
+    backgroundColor: Colors.white,
     content: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
