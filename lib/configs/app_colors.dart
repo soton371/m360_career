@@ -6,6 +6,7 @@ class AppColors{
   static const Color seed = Color(0xfffc6d31);
   static const Color bg = Color(0xfffdfdfd);
   static const Color container = Color(0xffffffff);
+  static const Color black = Colors.black;
   static const Color title = Color(0xff0d013f);
   static const Color shadow = Color(0xfff4f5f7);
   static const Color hint = Color(0xff9d96bd);

@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
             home: child,
           );
         },
+        // child: const OtpScreen(type: 0),
         child: const LoginScreen(),
       ),
     );
