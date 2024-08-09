@@ -199,7 +199,6 @@ class SignUpScreen extends StatelessWidget {
                   children: [
                     const Text(
                       "Already have an account? ",
-                      style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                     InkWell(
                       onTap: () {

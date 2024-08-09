@@ -15,7 +15,6 @@ Future<void> appDialog(BuildContext context,
     content: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(height: 8.h,),
         HugeIcon(
           icon: isSuccess == true ? HugeIcons.strokeRoundedCheckmarkBadge01 : HugeIcons.strokeRoundedSadDizzy,
           color: AppColors.seed,
@@ -25,7 +24,6 @@ Future<void> appDialog(BuildContext context,
         Text(
           title ?? (isSuccess == true? 'Success!' :
           'Failed!'),
-
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 22.sp,
@@ -33,15 +31,11 @@ Future<void> appDialog(BuildContext context,
             color: AppColors.seed
           ),
         ),
+        SizedBox(height: 8.h,),
         Text(
           msg,
           textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w500
-          ),
         ),
-        SizedBox(height: 8.h,),
       ],
     ),
     actions: actions ?? [
