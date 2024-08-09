@@ -11,6 +11,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Map<String, String>? payloadRegistration;
+  Map<String, dynamic>? payloadSendOtp;
 
   AuthBloc() : super(AuthInitial()) {
     //for SendOtpForRegistration
@@ -18,9 +19,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(SendOtpLoading());
       logger.f("Call SendOtpForRegistration");
       payloadRegistration = event.payloadRegistration;
-      final payload = {"email": event.payloadRegistration['email'], "type": 0};
+      payloadSendOtp = {"email": event.payloadRegistration['email'], "type": 0};
       final request =
-          await postResponse(url: AppUrls.sendOtp, payload: payload);
+          await postResponse(url: AppUrls.sendOtp, payload: payloadSendOtp);
       final response = appParseJson(
         request,
         (data) => data,
@@ -32,5 +33,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
     //end for SendOtpForRegistration
+
+    //for resend otp
+    on<ResendOtp>((event, emit) async {
+      emit(SendOtpLoading());
+      logger.f("Call ResendOtp");
+      final request =
+      await postResponse(url: AppUrls.sendOtp, payload: payloadSendOtp);
+      final response = appParseJson(
+        request,
+            (data) => data,
+      );
+      if (response.success == true) {
+        emit(SendOtpSuccess());
+      } else {
+        emit(SendOtpFailed(title: response.title, message: response.message));
+      }
+    });
+    //end for resend otp
   }
 }

@@ -26,7 +26,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(AppSizes.bodyPadding.r),
         child: ElevatedButton(onPressed: (){
-          Navigator.push(context, PageTransition(child: const OtpScreen(type: 1,), type: PageTransitionType.fade));
+          Navigator.push(context, PageTransition(child: const OtpScreen(), type: PageTransitionType.fade));
         }, child: const Text("CONTINUE")),
       ),
     );

@@ -19,3 +19,14 @@ final class SendOtpFailed extends AuthState {
   const SendOtpFailed({required this.title, required this.message});
 }
 //end for send otp
+
+//for match otp
+final class MatchOtpLoading extends AuthState{}
+
+final class MatchOtpSuccess extends AuthState{}
+
+final class MatchOtpFailed extends AuthState{
+  final String? title, message;
+  const MatchOtpFailed({required this.title, required this.message});
+}
+//end for match otp

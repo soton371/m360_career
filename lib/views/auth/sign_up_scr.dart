@@ -33,9 +33,7 @@ class SignUpScreen extends StatelessWidget {
             Navigator.push(
                 context,
                 PageTransition(
-                    child: const OtpScreen(
-                      type: 0,
-                    ),
+                    child: const OtpScreen(),
                     type: PageTransitionType.fade));
           } else if (state is SendOtpFailed) {
             Navigator.pop(context);
