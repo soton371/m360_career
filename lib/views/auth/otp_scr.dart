@@ -39,7 +39,8 @@ class OtpScreen extends StatelessWidget {
             }else if(state is RegistrationLoading){
               appLoader(context);
             }else if(state is RegistrationSuccess){
-              Navigator.pushAndRemoveUntil(context, PageTransition(child: HomeScreen(token: state.token,), type: PageTransitionType.fade), (v)=>true);
+              Navigator.pop(context);
+              Navigator.pushAndRemoveUntil(context, PageTransition(child: HomeScreen(token: state.token,), type: PageTransitionType.fade), (v)=> false);
             }else if(state is RegistrationFailed){
               Navigator.pop(context);
               appDialog(context, msg: state.message??'Failed to registration.',title: state.title);
