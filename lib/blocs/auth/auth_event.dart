@@ -16,7 +16,12 @@ class SendOtpForRegistration extends AuthEvent{
 class ResendOtp extends AuthEvent{}
 //end for send otp
 
-
+//for registration
+class RegistrationEvent extends AuthEvent{
+  final String pin;
+  const RegistrationEvent(this.pin);
+}
+//end for registration
 
 //for match otp
 class MatchOtp extends AuthEvent{

@@ -67,7 +67,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       Navigator.pushAndRemoveUntil(
                           context,
                           PageTransition(
-                              child: const HomeScreen(),
+                              child: const HomeScreen(token: 'Do development login from reset password',),
                               type: PageTransitionType.fade),
                               (v) => true);
                     }, child: const Text("Go to Home")),

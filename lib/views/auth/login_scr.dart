@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
           SizedBox(height: AppSizes.bodyPadding.h * 2),
 
           FadeInUp(child: ElevatedButton(onPressed: () {
-            Navigator.push(context, PageTransition(child: const HomeScreen(), type: PageTransitionType.fade));
+            Navigator.push(context, PageTransition(child: const HomeScreen(token: 'Do Login Development',), type: PageTransitionType.fade));
 
           }, child: const Text("LOGIN"))),
 

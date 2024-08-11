@@ -2,7 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:m360_career/widgets/widgets.dart';
+import 'package:m360_career/views/home/home_scr.dart';
+import 'package:page_transition/page_transition.dart';
+import '../../widgets/widgets.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../blocs/blocs.dart';
@@ -14,6 +16,7 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController pinCon = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
@@ -22,17 +25,24 @@ class OtpScreen extends StatelessWidget {
           ..startTimer(),
         child: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
-            logger.d("message state: ${state.runtimeType}");
             if(state is SendOtpLoading){
               appLoader(context);
             }else if(state is SendOtpSuccess){
               Navigator.pop(context);
               Navigator.pop(context);
               context.read<OtpTimerCubit>().resetTimer();
+              pinCon.clear();
             }else if(state is SendOtpFailed){
               Navigator.pop(context);
               Navigator.pop(context);
               appDialog(context, msg: state.message??'Failed to send otp.',title: state.title);
+            }else if(state is RegistrationLoading){
+              appLoader(context);
+            }else if(state is RegistrationSuccess){
+              Navigator.pushAndRemoveUntil(context, PageTransition(child: HomeScreen(token: state.token,), type: PageTransitionType.fade), (v)=>true);
+            }else if(state is RegistrationFailed){
+              Navigator.pop(context);
+              appDialog(context, msg: state.message??'Failed to registration.',title: state.title);
             }
           },
           child: ListView(
@@ -49,7 +59,11 @@ class OtpScreen extends StatelessWidget {
               ),
               FadeInUp(
                 child: Pinput(
-                  onCompleted: (pin) {},
+                  length: 4,
+                  controller: pinCon,
+                  onCompleted: (pin) {
+                    context.read<AuthBloc>().add(RegistrationEvent(pin));
+                  },
                   cursor: const Text(
                     '|',
                     style: TextStyle(color: AppColors.seed, fontSize: 22),

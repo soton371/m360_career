@@ -20,6 +20,22 @@ final class SendOtpFailed extends AuthState {
 }
 //end for send otp
 
+
+//for registration
+final class RegistrationLoading extends AuthState{}
+
+final class RegistrationSuccess extends AuthState{
+  final String token;
+  const RegistrationSuccess(this.token);
+}
+
+final class RegistrationFailed extends AuthState{
+  final String? title, message;
+  const RegistrationFailed({required this.title, required this.message});
+}
+//end for registration
+
+
 //for match otp
 final class MatchOtpLoading extends AuthState{}
 

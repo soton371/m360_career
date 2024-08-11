@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:m360_career/configs/configs.dart';
+import 'package:m360_career/models/models.dart';
 import 'package:m360_career/repositories/post_response.dart';
 
 import '../../utilities/utilities.dart';
@@ -12,25 +13,32 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Map<String, String>? payloadRegistration;
   Map<String, dynamic>? payloadSendOtp;
+  String? token;
 
   AuthBloc() : super(AuthInitial()) {
     //for SendOtpForRegistration
     on<SendOtpForRegistration>((event, emit) async {
       emit(SendOtpLoading());
       logger.f("Call SendOtpForRegistration");
-      payloadRegistration = event.payloadRegistration;
-      payloadSendOtp = {"email": event.payloadRegistration['email'], "type": 0};
-      final request =
-          await postResponse(url: AppUrls.sendOtp, payload: payloadSendOtp);
-      final response = appParseJson(
-        request,
-        (data) => data,
-      );
-      if (response.success == true) {
-        emit(SendOtpSuccess());
-      } else {
-        emit(SendOtpFailed(title: response.title, message: response.message));
+      try{
+        payloadRegistration = event.payloadRegistration;
+        payloadSendOtp = {"email": event.payloadRegistration['email'], "type": 0};
+        final request =
+        await postResponse(url: AppUrls.sendOtp, payload: payloadSendOtp);
+        final response = appParseJson(
+          request,
+              (data) => data,
+        );
+        if (response.success == true) {
+          emit(SendOtpSuccess());
+        } else {
+          emit(SendOtpFailed(title: response.title, message: response.message));
+        }
+      }catch(e){
+        logger.e("message SendOtpForRegistration: $e");
+        emit(const SendOtpFailed(title: "Failed!", message: "Something went wrong"));
       }
+
     });
     //end for SendOtpForRegistration
 
@@ -38,18 +46,77 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ResendOtp>((event, emit) async {
       emit(SendOtpLoading());
       logger.f("Call ResendOtp");
-      final request =
-      await postResponse(url: AppUrls.sendOtp, payload: payloadSendOtp);
-      final response = appParseJson(
-        request,
-            (data) => data,
-      );
-      if (response.success == true) {
-        emit(SendOtpSuccess());
-      } else {
-        emit(SendOtpFailed(title: response.title, message: response.message));
+      try{
+        final request =
+        await postResponse(url: AppUrls.sendOtp, payload: payloadSendOtp);
+        final response = appParseJson(
+          request,
+              (data) => data,
+        );
+        if (response.success == true) {
+          emit(SendOtpSuccess());
+        } else {
+          emit(SendOtpFailed(title: response.title, message: response.message));
+        }
+      }catch(e){
+        logger.e("message ResendOtp: $e");
+        emit(const SendOtpFailed(title: "Failed!", message: "Something went wrong"));
       }
+
     });
     //end for resend otp
+
+    //for registration
+    on<RegistrationEvent>((event, emit) async {
+      emit(RegistrationLoading());
+      logger.f("Call RegistrationEvent");
+      try{
+        final Map<String, String> payLoad = payloadRegistration!;
+        payLoad['otp'] = event.pin;
+
+        final request = await postResponse(url: AppUrls.registration, payload: payLoad);
+        ApiResponse<UserInfoModel> response = appParseJson<UserInfoModel>(
+          request,
+              (data) => UserInfoModel.fromJson(data),
+        );
+
+        token = response.data?.token;
+
+        if (response.success == true && token != null) {
+          emit(RegistrationSuccess(token!));
+        } else {
+          emit(RegistrationFailed(title: response.title, message: response.message));
+        }
+      }catch(e){
+        emit(const RegistrationFailed(title: "Failed!", message: "Something went wrong"));
+      }
+
+    });
+    //end for registration
+
+    //for match otp forgot password
+    on<MatchOtp>((event, emit) async {
+      emit(MatchOtpLoading());
+      logger.f("Call MatchOtp");
+      try{
+        final Map<String, String> payLoad = event.otpPayload;
+        payLoad['email'] = payloadSendOtp!['email'];
+        final request =
+        await postResponse(url: AppUrls.matchOtp, payload: payLoad);
+        final response = appParseJson(
+          request,
+              (data) => data,
+        );
+        if (response.success == true) {
+          emit(MatchOtpSuccess());
+        } else {
+          emit(MatchOtpFailed(title: response.title, message: response.message));
+        }
+      }catch(e){
+        emit(const MatchOtpFailed(title: "Failed!", message: "Something went wrong"));
+      }
+
+    });
+    //end for match otp forgot password
   }
 }

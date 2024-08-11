@@ -7,4 +7,6 @@ class AppUrls{
 
   //for auth
   static const String sendOtp = "$baseUrl/auth/send_otp";
+  static const String matchOtp = "$baseUrl/auth/match_otp";
+  static const String registration = "$baseUrl/auth/registration";
 }
