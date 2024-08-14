@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:m360_career/configs/configs.dart';
 import 'package:m360_career/models/models.dart';
 import 'package:m360_career/repositories/post_response.dart';
