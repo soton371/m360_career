@@ -15,24 +15,25 @@ import '../configs/configs.dart';
     ),
     filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
+            padding: WidgetStatePropertyAll(EdgeInsets.all(14.r)),
             foregroundColor: const WidgetStatePropertyAll(AppColors.filledButtonText),
             backgroundColor: const WidgetStatePropertyAll(AppColors.filledButton),
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius)
             )),
-            textStyle: const WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w600,letterSpacing: 0.5))
+            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w600,letterSpacing: 0.5, fontSize: 14.sp))
         )
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          padding: WidgetStatePropertyAll(EdgeInsets.all(13.r)),
+          padding: WidgetStatePropertyAll(EdgeInsets.all(14.r)),
             foregroundColor: const WidgetStatePropertyAll(AppColors.container),
             backgroundColor: const WidgetStatePropertyAll(AppColors.seed),
             elevation: const WidgetStatePropertyAll(0),
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius)
             )),
-            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5, fontSize: 16.sp))
+            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5, fontSize: 14.sp))
         ),
     ),
     appBarTheme: const AppBarTheme(

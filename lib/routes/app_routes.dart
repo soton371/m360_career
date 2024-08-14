@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:m360_career/views/auth/forgot_password_scr.dart';
-import 'package:m360_career/views/auth/reset_password_scr.dart';
 import '../views/views.dart';
 
 part 'route_name.dart';
@@ -32,6 +30,11 @@ class AppRoutes {
         name: RouteNames.register,
         pageBuilder: (context, state) =>
             FadeTransitionPage(child: const SignUpScreen())),
+    GoRoute(
+        path: RouteNames.home,
+        name: RouteNames.home,
+        pageBuilder: (context, state) => FadeTransitionPage(
+            child: HomeScreen(token: state.extra.toString()))),
   ]);
 }
 

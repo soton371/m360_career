@@ -41,7 +41,7 @@ class OtpScreen extends StatelessWidget {
               appLoader(context);
             }else if(state is RegistrationSuccess){
               Navigator.pop(context);
-              context.goNamed(RouteNames.home);
+              context.goNamed(RouteNames.home, extra: state.token);
             }else if(state is RegistrationFailed){
               Navigator.pop(context);
               appDialog(context, msg: state.message??'Failed to registration.',title: state.title);

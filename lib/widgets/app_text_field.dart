@@ -70,9 +70,6 @@ class AppTextField extends StatelessWidget {
             onTapOutside: (event) => FocusScope.of(context).unfocus(),
           ),
         ),
-        SizedBox(
-          height: AppSizes.bodyPadding.h,
-        ),
       ],
     );
   }

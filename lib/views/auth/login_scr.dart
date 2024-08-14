@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
           ),
           //end for email
 
-
+          const SizedBox(height: 15,),
           //for password
           FadeInUp(
             child: AppTextField(
@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
           SizedBox(height: AppSizes.bodyPadding.h * 2),
 
           FadeInUp(child: ElevatedButton(onPressed: () {
-            context.goNamed(RouteNames.home);
+            context.goNamed(RouteNames.home, extra: 'token after login');
           }, child: const Text("LOGIN"))),
 
           SizedBox(height: AppSizes.bodyPadding.h),
