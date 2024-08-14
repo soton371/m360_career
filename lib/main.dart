@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:m360_career/views/views.dart';
-import '../configs/configs.dart';
+import 'package:m360_career/routes/app_routes.dart';
+import '../../configs/configs.dart';
 import 'blocs/blocs.dart';
 
 void main() {
@@ -21,18 +21,13 @@ class MyApp extends StatelessWidget {
       ],
       child: ScreenUtilInit(
         designSize: const Size(393, 852),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        ensureScreenSize: true,
         builder: (context, child) {
-          return MaterialApp(
+          return MaterialApp.router(
             title: 'M360 Career',
             theme: kAppTheme(context),
-            home: child,
+            routerConfig: AppRoutes.router,
           );
         },
-        // child: const OtpScreen(type: 0),
-        child: const LoginScreen(),
       ),
     );
   }

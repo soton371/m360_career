@@ -24,6 +24,7 @@ import '../configs/configs.dart';
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
+          padding: const WidgetStatePropertyAll(EdgeInsets.all(12)),
             foregroundColor: const WidgetStatePropertyAll(AppColors.container),
             backgroundColor: const WidgetStatePropertyAll(AppColors.seed),
             elevation: const WidgetStatePropertyAll(0),
