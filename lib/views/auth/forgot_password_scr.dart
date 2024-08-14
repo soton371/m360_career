@@ -1,10 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:m360_career/configs/app_sizes.dart';
-import 'package:m360_career/views/views.dart';
-import 'package:m360_career/widgets/widgets.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:go_router/go_router.dart';
+import '../../configs/app_sizes.dart';
+import '../../views/views.dart';
+import '../../widgets/widgets.dart';
+
+import '../../routes/app_routes.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -26,7 +28,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(AppSizes.bodyPadding.r),
         child: ElevatedButton(onPressed: (){
-          Navigator.push(context, PageTransition(child: const OtpScreen(), type: PageTransitionType.fade));
+          context.goNamed(RouteNames.otp);
         }, child: const Text("CONTINUE")),
       ),
     );

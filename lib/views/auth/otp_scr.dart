@@ -2,9 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:m360_career/views/home/home_scr.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:go_router/go_router.dart';
 import '../../cubits/cubits.dart';
+import '../../routes/app_routes.dart';
 import '../../widgets/widgets.dart';
 import 'package:pinput/pinput.dart';
 
@@ -41,7 +41,7 @@ class OtpScreen extends StatelessWidget {
               appLoader(context);
             }else if(state is RegistrationSuccess){
               Navigator.pop(context);
-              Navigator.pushAndRemoveUntil(context, PageTransition(child: HomeScreen(token: state.token,), type: PageTransitionType.fade), (v)=> false);
+              context.goNamed(RouteNames.home);
             }else if(state is RegistrationFailed){
               Navigator.pop(context);
               appDialog(context, msg: state.message??'Failed to registration.',title: state.title);

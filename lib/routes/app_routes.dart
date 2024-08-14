@@ -11,27 +11,39 @@ class AppRoutes {
     GoRoute(
         path: RouteNames.login,
         name: RouteNames.login,
-        pageBuilder: (context, state) =>
-            const MaterialPage(child: LoginScreen())),
+        builder: (context, state) => const LoginScreen()),
     GoRoute(
         path: RouteNames.forgotPassword,
         name: RouteNames.forgotPassword,
         pageBuilder: (context, state) =>
-        const MaterialPage(child: ForgotPasswordScreen())),
+            FadeTransitionPage(child: const ForgotPasswordScreen())),
     GoRoute(
         path: RouteNames.otp,
         name: RouteNames.otp,
         pageBuilder: (context, state) =>
-        const MaterialPage(child: OtpScreen())),
+            FadeTransitionPage(child: const OtpScreen())),
     GoRoute(
         path: RouteNames.resetPassword,
         name: RouteNames.resetPassword,
         pageBuilder: (context, state) =>
-        const MaterialPage(child: ResetPasswordScreen())),
+            FadeTransitionPage(child: const ResetPasswordScreen())),
     GoRoute(
         path: RouteNames.register,
         name: RouteNames.register,
         pageBuilder: (context, state) =>
-        const MaterialPage(child: SignUpScreen())),
+            FadeTransitionPage(child: const SignUpScreen())),
   ]);
+}
+
+class FadeTransitionPage<T> extends CustomTransitionPage<T> {
+  FadeTransitionPage({
+    required super.child,
+  }) : super(
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
 }

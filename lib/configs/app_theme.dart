@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../configs/configs.dart';
 
@@ -24,14 +25,14 @@ import '../configs/configs.dart';
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          padding: const WidgetStatePropertyAll(EdgeInsets.all(12)),
+          padding: WidgetStatePropertyAll(EdgeInsets.all(13.r)),
             foregroundColor: const WidgetStatePropertyAll(AppColors.container),
             backgroundColor: const WidgetStatePropertyAll(AppColors.seed),
             elevation: const WidgetStatePropertyAll(0),
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius)
             )),
-            textStyle: const WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5))
+            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5, fontSize: 16.sp))
         ),
     ),
     appBarTheme: const AppBarTheme(

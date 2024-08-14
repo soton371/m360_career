@@ -2,12 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import '../../blocs/blocs.dart';
 import '../../configs/configs.dart';
+import '../../routes/app_routes.dart';
 import '../../utilities/utilities.dart';
 import '../../views/views.dart';
-import 'package:page_transition/page_transition.dart';
 
 import '../../widgets/widgets.dart';
 
@@ -30,11 +31,7 @@ class SignUpScreen extends StatelessWidget {
             appLoader(context);
           } else if (state is SendOtpSuccess) {
             Navigator.pop(context);
-            Navigator.push(
-                context,
-                PageTransition(
-                    child: const OtpScreen(),
-                    type: PageTransitionType.fade));
+            context.pushNamed(RouteNames.otp);
           } else if (state is SendOtpFailed) {
             Navigator.pop(context);
             appDialog(context,
@@ -200,11 +197,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                                child: const LoginScreen(),
-                                type: PageTransitionType.fade));
+                        context.goNamed(RouteNames.login);
                       },
                       child: const Text(
                         "Login",

@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:m360_career/configs/app_sizes.dart';
-import 'package:m360_career/views/home/home_scr.dart';
-import 'package:page_transition/page_transition.dart';
 
+import '../../routes/app_routes.dart';
 import '../../widgets/widgets.dart';
 import '../views.dart';
 
@@ -64,12 +64,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         )
                       ),
                         onPressed: (){
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          PageTransition(
-                              child: const HomeScreen(token: 'Do development login from reset password',),
-                              type: PageTransitionType.fade),
-                              (v) => true);
+                          context.goNamed(RouteNames.home);
                     }, child: const Text("Go to Home")),
                   )
                 ]

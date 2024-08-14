@@ -1,13 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:m360_career/views/auth/auth_header.dart';
-import 'package:m360_career/views/auth/forgot_password_scr.dart';
-import 'package:m360_career/views/auth/sign_up_scr.dart';
-import 'package:m360_career/views/home/home_scr.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:go_router/go_router.dart';
+import 'package:m360_career/routes/app_routes.dart';
 import '../../configs/configs.dart';
 import '../../widgets/widgets.dart';
+import '../views.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -55,15 +53,14 @@ class LoginScreen extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, PageTransition(child: const ForgotPasswordScreen(), type: PageTransitionType.fade));
+                      context.pushNamed(RouteNames.forgotPassword);
                     }, child: const Text("Forgot Password?"))),
           ),
 
           SizedBox(height: AppSizes.bodyPadding.h * 2),
 
           FadeInUp(child: ElevatedButton(onPressed: () {
-            Navigator.push(context, PageTransition(child: const HomeScreen(token: 'Do Login Development',), type: PageTransitionType.fade));
-
+            context.goNamed(RouteNames.home);
           }, child: const Text("LOGIN"))),
 
           SizedBox(height: AppSizes.bodyPadding.h),
@@ -91,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, PageTransition(child:const SignUpScreen(),type: PageTransitionType.fade));
+                    context.goNamed(RouteNames.register);
                   },
                   child: const Text(
                     "Sign Up",
