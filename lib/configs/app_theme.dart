@@ -21,7 +21,7 @@ import '../configs/configs.dart';
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius)
             )),
-            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w600,letterSpacing: 0.5, fontSize: 14.sp))
+            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w500,letterSpacing: 0.5, fontSize: 14.sp))
         )
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -33,7 +33,7 @@ import '../configs/configs.dart';
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius)
             )),
-            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5, fontSize: 14.sp))
+            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w600, letterSpacing: 0.5, fontSize: 14.sp))
         ),
     ),
     appBarTheme: const AppBarTheme(

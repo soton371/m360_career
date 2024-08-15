@@ -43,3 +43,18 @@ final class MatchOtpFailed extends AuthState{
   const MatchOtpFailed({required this.title, required this.message});
 }
 //end for match otp
+
+
+//for login
+final class LoginLoading extends AuthState{}
+
+final class LoginSuccess extends AuthState{
+  final String token;
+  const LoginSuccess(this.token);
+}
+
+final class LoginFailed extends AuthState{
+  final String? title, message;
+  const LoginFailed({required this.title, required this.message});
+}
+//end for login

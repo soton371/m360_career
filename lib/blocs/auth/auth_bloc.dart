@@ -117,5 +117,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     });
     //end for match otp forgot password
+
+    //for login
+    on<DoLogin>((event, emit)async{
+      emit(LoginLoading());
+      logger.f("message call DoLogin");
+      final req = await postResponse(url: AppUrls.login, payload: {
+        "email": event.email.trim(),
+        "password": event.password.trim()
+      });
+
+      final ApiResponse<UserInfoModel> response = appParseJson(req, (fromJsonT)=>UserInfoModel.fromJson(fromJsonT));
+
+      if(response.success != true){
+        emit(LoginFailed(title: response.title, message: response.message));
+        return;
+      }
+
+      final token = response.data?.token??'';
+      if(token.isEmpty){
+        emit(const LoginFailed(title: "Sorry!", message: "Access token not found."));
+        return;
+      }
+      emit(LoginSuccess(token));
+    });
+    //end for login
   }
 }

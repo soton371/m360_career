@@ -26,3 +26,10 @@ class MatchOtp extends AuthEvent{
   const MatchOtp(this.otpPayload);
 }
 //end for match otp
+
+//for login
+class DoLogin extends AuthEvent{
+  final String email, password;
+  const DoLogin(this.email,this.password);
+}
+//end login
