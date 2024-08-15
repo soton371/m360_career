@@ -23,7 +23,7 @@ Future<void> appDialog(BuildContext context,
         SizedBox(height: 15.h,),
         Text(
           title ?? (isSuccess == true? 'Success!' :
-          'Failed!'),
+          'Sorry!'),
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 22.sp,

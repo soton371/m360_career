@@ -181,7 +181,7 @@ class SignUpScreen extends StatelessWidget {
                           };
                           context
                               .read<AuthBloc>()
-                              .add(SendOtpForRegistration(payload));
+                              .add(DoSendOtp(payload,0));
                         }
                       },
                       child: const Text("SIGN UP"))),

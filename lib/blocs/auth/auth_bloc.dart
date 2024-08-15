@@ -16,12 +16,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc() : super(AuthInitial()) {
     //for SendOtpForRegistration
-    on<SendOtpForRegistration>((event, emit) async {
+    on<DoSendOtp>((event, emit) async {
       emit(SendOtpLoading());
-      logger.f("Call SendOtpForRegistration");
+      logger.f("Call DoSendOtp");
       try{
-        payloadRegistration = event.payloadRegistration;
-        payloadSendOtp = {"email": event.payloadRegistration['email'], "type": 0};
+        if(event.type == 0){
+          payloadRegistration = event.payload;
+        }
+
+        payloadSendOtp = {"email": event.payload['email'], "type": event.type};
         final request =
         await postResponse(url: AppUrls.sendOtp, payload: payloadSendOtp);
         final response = appParseJson(
@@ -42,7 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //end for SendOtpForRegistration
 
     //for resend otp
-    on<ResendOtp>((event, emit) async {
+    on<DoResendOtp>((event, emit) async {
       emit(SendOtpLoading());
       logger.f("Call ResendOtp");
       try{
@@ -66,7 +69,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //end for resend otp
 
     //for registration
-    on<RegistrationEvent>((event, emit) async {
+    on<DoRegistrationEvent>((event, emit) async {
       emit(RegistrationLoading());
       logger.f("Call RegistrationEvent");
       try{
@@ -94,7 +97,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //end for registration
 
     //for match otp forgot password
-    on<MatchOtp>((event, emit) async {
+    on<DoMatchOtp>((event, emit) async {
       emit(MatchOtpLoading());
       logger.f("Call MatchOtp");
       try{
@@ -112,7 +115,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(MatchOtpFailed(title: response.title, message: response.message));
         }
       }catch(e){
-        emit(const MatchOtpFailed(title: "Failed!", message: "Something went wrong"));
+        emit(const MatchOtpFailed(title: "Sorry!", message: "Something went wrong"));
       }
 
     });

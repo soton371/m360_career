@@ -64,7 +64,7 @@ class OtpScreen extends StatelessWidget {
                   length: 4,
                   controller: pinCon,
                   onCompleted: (pin) {
-                    context.read<AuthBloc>().add(RegistrationEvent(pin));
+                    context.read<AuthBloc>().add(DoRegistrationEvent(pin));
                   },
                   cursor: const Text(
                     '|',
@@ -94,7 +94,7 @@ class OtpScreen extends StatelessWidget {
                     return state.remainingSeconds == 0 ?
                     TextButton(
                       onPressed: () {
-                        context.read<AuthBloc>().add(ResendOtp());
+                        context.read<AuthBloc>().add(DoResendOtp());
                         /*final cubit = context.read<OtpTimerCubit>();
                       if (cubit.state.remainingSeconds == 0) {
                         // cubit.resetTimer();

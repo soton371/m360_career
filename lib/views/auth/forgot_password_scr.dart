@@ -1,7 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:m360_career/blocs/blocs.dart';
+import 'package:m360_career/configs/app_urls.dart';
 import '../../configs/app_sizes.dart';
 import '../../utilities/utilities.dart';
 import '../../views/views.dart';
@@ -18,44 +21,66 @@ class ForgotPasswordScreen extends StatelessWidget {
     final emailCon = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
-      body: ListView(
-        padding: EdgeInsets.all(AppSizes.bodyPadding.r),
-        children: [
-          FadeInUp(
-              child: const AuthHeader(
-                  title: "Forgot Password🔑",
-                  subtitle:
-                      "Enter your email address to get an OTP code to reset your password.")),
-          SizedBox(
-            height: 80.h,
-          ),
-          FadeInUp(
-              child: AppTextField(
-                label: 'Email',
-                hintText: 'Soton.m360ict@gmail.com',
-                textEditingController: emailCon,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                validator: (v) {
-                  if (v == null || v.trim().isEmpty) {
-                    return 'Enter your email';
-                  } else if (!isValidEmail(v.trim())) {
-                    return 'Enter valid email';
-                  } else {
-                    return null;
-                  }
-                },
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if(state is SendOtpLoading){
+            appLoader(context);
+          }else if(state is SendOtpSuccess){
+            context.pop();
+            context.pushNamed(RouteNames.otp);
+          }else if(state is SendOtpFailed){
+            context.pop();
+            appDialog(context, msg: state.message??'Failed to send otp.', title: state.title);
+          }
+        },
+        child: ListView(
+          padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+          children: [
+            FadeInUp(
+                child: const AuthHeader(
+                    title: "Forgot Password🔑",
+                    subtitle:
+                    "Enter your email address to get an OTP code to reset your password.")),
+            SizedBox(
+              height: 80.h,
+            ),
+            FadeInUp(
+              child: Form(
+                key: formKey,
+                child: AppTextField(
+                  label: 'Email',
+                  hintText: 'Soton.m360ict@gmail.com',
+                  textEditingController: emailCon,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.done,
+                  validator: (v) {
+                    if (v == null || v
+                        .trim()
+                        .isEmpty) {
+                      return 'Enter your email';
+                    } else if (!isValidEmail(v.trim())) {
+                      return 'Enter valid email';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
               ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(AppSizes.bodyPadding.r),
         child: ElevatedButton(
             onPressed: () {
+              logger.d('message');
               final currentState = formKey.currentState;
               if (currentState != null && currentState.validate()) {
-
+                logger.d('message2');
+                context.read<AuthBloc>().add(DoSendOtp({
+                  "email": emailCon.text.trim(),
+                },1));
               }
             },
             child: const Text("CONTINUE")),
