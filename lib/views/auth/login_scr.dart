@@ -16,19 +16,22 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
     final TextEditingController emailCon = TextEditingController(),
         passwordCon = TextEditingController();
+    final passwordHide = ValueNotifier<bool>(true);
     return Scaffold(
       appBar: AppBar(),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if(state is LoginLoading){
+          if (state is LoginLoading) {
             appLoader(context);
-          }else if(state is LoginSuccess){
+          } else if (state is LoginSuccess) {
             context.goNamed(RouteNames.home, extra: state.token);
-          }else if(state is LoginFailed){
+          } else if (state is LoginFailed) {
             context.pop();
-            appDialog(context, msg: state.message??'Failed to login!', title: state.title);
+            appDialog(context,
+                msg: state.message ?? 'Failed to login!', title: state.title);
           }
         },
         child: ListView(
@@ -120,8 +123,11 @@ class LoginScreen extends StatelessWidget {
             FadeInUp(
                 child: ElevatedButton(
                     onPressed: () {
-                      context.read<AuthBloc>().add(DoLogin(
-                          emailCon.text.trim(), passwordCon.text.trim()));
+                      final currentState = formKey.currentState;
+                      if (currentState != null && currentState.validate()) {
+                        context.read<AuthBloc>().add(DoLogin(
+                            emailCon.text.trim(), passwordCon.text.trim()));
+                      }
                     },
                     child: const Text("LOGIN"))),
 
@@ -170,5 +176,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-ValueNotifier<bool> passwordHide = ValueNotifier<bool>(true);
