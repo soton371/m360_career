@@ -19,10 +19,13 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-    TextEditingController fNameCon = TextEditingController(),
+    final fNameCon = TextEditingController(),
         emailCon = TextEditingController(),
         passwordCon1 = TextEditingController(),
         passwordCon2 = TextEditingController();
+
+    final pass1Hide = ValueNotifier<bool>(true);
+    final pass2Hide = ValueNotifier<bool>(true);
     return Scaffold(
       appBar: AppBar(),
       body: BlocListener<AuthBloc, AuthState>(
@@ -219,5 +222,4 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-ValueNotifier<bool> pass1Hide = ValueNotifier<bool>(true);
-ValueNotifier<bool> pass2Hide = ValueNotifier<bool>(true);
+

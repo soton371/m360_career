@@ -110,7 +110,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               (data) => data,
         );
         if (response.success == true) {
-          emit(MatchOtpSuccess());
+          final matchOtpToken = response.data['token'];
+          emit(MatchOtpSuccess(matchOtpToken));
         } else {
           emit(MatchOtpFailed(title: response.title, message: response.message));
         }

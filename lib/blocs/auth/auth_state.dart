@@ -36,7 +36,10 @@ final class RegistrationFailed extends AuthState{
 //for match otp
 final class MatchOtpLoading extends AuthState{}
 
-final class MatchOtpSuccess extends AuthState{}
+final class MatchOtpSuccess extends AuthState{
+  final String token;
+  const MatchOtpSuccess(this.token);
+}
 
 final class MatchOtpFailed extends AuthState{
   final String? title, message;

@@ -29,22 +29,30 @@ class OtpScreen extends StatelessWidget {
             if(state is SendOtpLoading){
               appLoader(context);
             }else if(state is SendOtpSuccess){
-              Navigator.pop(context);
-              Navigator.pop(context);
+              context.pop();
+              context.pop();
               context.read<OtpTimerCubit>().resetTimer();
               pinCon.clear();
             }else if(state is SendOtpFailed){
-              Navigator.pop(context);
-              Navigator.pop(context);
+              context.pop();
+              context.pop();
               appDialog(context, msg: state.message??'Failed to send otp.',title: state.title);
             }else if(state is RegistrationLoading){
               appLoader(context);
             }else if(state is RegistrationSuccess){
-              Navigator.pop(context);
+              context.pop();
               context.goNamed(RouteNames.home, extra: state.token);
             }else if(state is RegistrationFailed){
-              Navigator.pop(context);
+              context.pop();
               appDialog(context, msg: state.message??'Failed to registration.',title: state.title);
+            }else if(state is MatchOtpLoading){
+              appLoader(context);
+            }else if(state is MatchOtpSuccess){
+              context.pop();
+              context.goNamed(RouteNames.resetPassword, extra: state.token);
+            }else if(state is RegistrationFailed){
+              context.pop();
+              appDialog(context, msg: state.message??'Something went wrong.',title: state.title);
             }
           },
           child: ListView(
