@@ -146,5 +146,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(LoginSuccess(token));
     });
     //end for login
+
+
+    //for reset password
+    on<DoResetPassword>((event, emit)async{
+      emit(ResetPasswordLoading());
+      logger.f("message call DoResetPassword");
+      final req = await postResponse(url: AppUrls.resetPassword, payload: event.payload);
+
+      final response = appParseJson(req, (fromJsonT)=>fromJsonT);
+
+      if(response.success != true){
+        emit(ResetPasswordFailed(title: response.title, message: response.message));
+        return;
+      }
+
+      emit(ResetPasswordSuccess());
+    });
+    //end for reset password
   }
 }

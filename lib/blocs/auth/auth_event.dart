@@ -34,3 +34,11 @@ class DoLogin extends AuthEvent{
   const DoLogin(this.email,this.password);
 }
 //end login
+
+
+//for reset password
+class DoResetPassword extends AuthEvent{
+  final Map<String,String> payload;
+  const DoResetPassword(this.payload);
+}
+//end for reset password

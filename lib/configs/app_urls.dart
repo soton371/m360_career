@@ -10,4 +10,5 @@ class AppUrls{
   static const String matchOtp = "$baseUrl/auth/match_otp";
   static const String registration = "$baseUrl/auth/registration";
   static const String login = "$baseUrl/auth/login";
+  static const String resetPassword = "$baseUrl/auth/reset_password";
 }

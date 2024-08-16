@@ -61,3 +61,15 @@ final class LoginFailed extends AuthState{
   const LoginFailed({required this.title, required this.message});
 }
 //end for login
+
+//for rest password
+final class ResetPasswordLoading extends AuthState{}
+
+final class ResetPasswordSuccess extends AuthState{
+}
+
+final class ResetPasswordFailed extends AuthState{
+  final String? title, message;
+  const ResetPasswordFailed({required this.title, required this.message});
+}
+//end for rest password
