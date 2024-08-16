@@ -152,6 +152,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<DoResetPassword>((event, emit)async{
       emit(ResetPasswordLoading());
       logger.f("message call DoResetPassword");
+      event.payload['email'] = payloadSendOtp!['email'];
       final req = await postResponse(url: AppUrls.resetPassword, payload: event.payload);
 
       final response = appParseJson(req, (fromJsonT)=>fromJsonT);
