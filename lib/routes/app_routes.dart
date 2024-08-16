@@ -19,7 +19,7 @@ class AppRoutes {
         path: RouteNames.otp,
         name: RouteNames.otp,
         pageBuilder: (context, state) =>
-            FadeTransitionPage(child: const OtpScreen())),
+            FadeTransitionPage(child: OtpScreen(forRestPassword: state.extra,))),
     GoRoute(
         path: RouteNames.resetPassword,
         name: RouteNames.resetPassword,

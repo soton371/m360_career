@@ -37,8 +37,8 @@ final class RegistrationFailed extends AuthState{
 final class MatchOtpLoading extends AuthState{}
 
 final class MatchOtpSuccess extends AuthState{
-  final String token;
-  const MatchOtpSuccess(this.token);
+  // final String token;
+  // const MatchOtpSuccess(this.token);
 }
 
 final class MatchOtpFailed extends AuthState{

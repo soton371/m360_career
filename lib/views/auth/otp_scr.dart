@@ -13,7 +13,8 @@ import '../../configs/configs.dart';
 import '../views.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+  const OtpScreen({super.key, this.forRestPassword});
+  final Object? forRestPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +50,8 @@ class OtpScreen extends StatelessWidget {
               appLoader(context);
             }else if(state is MatchOtpSuccess){
               context.pop();
-              context.goNamed(RouteNames.resetPassword, extra: state.token);
-            }else if(state is RegistrationFailed){
+              context.goNamed(RouteNames.resetPassword);
+            }else if(state is MatchOtpFailed){
               context.pop();
               appDialog(context, msg: state.message??'Something went wrong.',title: state.title);
             }
@@ -72,7 +73,12 @@ class OtpScreen extends StatelessWidget {
                   length: 4,
                   controller: pinCon,
                   onCompleted: (pin) {
-                    context.read<AuthBloc>().add(DoRegistrationEvent(pin));
+                    if(forRestPassword == true){
+                      context.read<AuthBloc>().add(DoMatchOtp(pin));
+                    }else{
+                      context.read<AuthBloc>().add(DoRegistrationEvent(pin));
+                    }
+
                   },
                   cursor: const Text(
                     '|',

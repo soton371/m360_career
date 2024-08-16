@@ -1,13 +1,13 @@
-class ApiResponse<T> {
+class ApiResponseModel<T> {
   bool? success;
   String? title;
   String? message;
   T? data;
 
-  ApiResponse({this.success, this.title = "Failed", this.message, this.data});
+  ApiResponseModel({this.success, this.title = "Failed", this.message, this.data});
 
-  factory ApiResponse.fromJson(Map<String, dynamic> json, Function fromJsonT) {
-    return ApiResponse(
+  factory ApiResponseModel.fromJson(Map<String, dynamic> json, Function fromJsonT) {
+    return ApiResponseModel(
       success: json['success'],
       title: json['title'],
       message: json['message'],

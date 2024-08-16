@@ -27,7 +27,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             appLoader(context);
           }else if(state is SendOtpSuccess){
             context.pop();
-            context.pushNamed(RouteNames.otp);
+            context.pushNamed(RouteNames.otp, extra: true);
           }else if(state is SendOtpFailed){
             context.pop();
             appDialog(context, msg: state.message??'Failed to send otp.', title: state.title);

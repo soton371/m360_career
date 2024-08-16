@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:m360_career/configs/configs.dart';
 import 'package:m360_career/models/models.dart';
-import 'package:m360_career/repositories/post_response.dart';
+import 'package:m360_career/repositories/api_response.dart';
 
 import '../../utilities/utilities.dart';
 
@@ -77,7 +77,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         payLoad['otp'] = event.pin;
 
         final request = await postResponse(url: AppUrls.registration, payload: payLoad);
-        ApiResponse<UserInfoModel> response = appParseJson<UserInfoModel>(
+        ApiResponseModel<UserInfoModel> response = appParseJson<UserInfoModel>(
           request,
               (data) => UserInfoModel.fromJson(data),
         );
@@ -101,8 +101,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(MatchOtpLoading());
       logger.f("Call MatchOtp");
       try{
-        final Map<String, String> payLoad = event.otpPayload;
-        payLoad['email'] = payloadSendOtp!['email'];
+        final Map<String, String> payLoad = {
+          "email": payloadSendOtp!['email'],
+          "otp": event.otp
+        };
         final request =
         await postResponse(url: AppUrls.matchOtp, payload: payLoad);
         final response = appParseJson(
@@ -110,8 +112,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               (data) => data,
         );
         if (response.success == true) {
-          final matchOtpToken = response.data['token'];
-          emit(MatchOtpSuccess(matchOtpToken));
+          token = response.data['token'];
+          emit(MatchOtpSuccess());
         } else {
           emit(MatchOtpFailed(title: response.title, message: response.message));
         }
@@ -131,7 +133,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         "password": event.password.trim()
       });
 
-      final ApiResponse<UserInfoModel> response = appParseJson(req, (fromJsonT)=>UserInfoModel.fromJson(fromJsonT));
+      final ApiResponseModel<UserInfoModel> response = appParseJson(req, (fromJsonT)=>UserInfoModel.fromJson(fromJsonT));
 
       if(response.success != true){
         emit(LoginFailed(title: response.title, message: response.message));
@@ -153,7 +155,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(ResetPasswordLoading());
       logger.f("message call DoResetPassword");
       event.payload['email'] = payloadSendOtp!['email'];
-      final req = await postResponse(url: AppUrls.resetPassword, payload: event.payload);
+      final req = await putResponse(url: AppUrls.resetPassword, payload: event.payload, token: token);
 
       final response = appParseJson(req, (fromJsonT)=>fromJsonT);
 

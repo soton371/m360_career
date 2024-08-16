@@ -86,6 +86,9 @@ class ResetPasswordScreen extends StatelessWidget {
                       );
                     }),
               ),
+              SizedBox(
+                height: 15.h,
+              ),
               FadeInUp(
                 child: ValueListenableBuilder(
                   valueListenable: pass2Hide,

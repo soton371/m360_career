@@ -23,8 +23,8 @@ class DoRegistrationEvent extends AuthEvent{
 
 //for match otp
 class DoMatchOtp extends AuthEvent{
-  final Map<String, String> otpPayload;
-  const DoMatchOtp(this.otpPayload);
+  final String otp;
+  const DoMatchOtp(this.otp);
 }
 //end for match otp
 

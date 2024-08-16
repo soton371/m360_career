@@ -16,7 +16,7 @@ class CustomToast extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.container,
         border: Border.all(color: AppColors.shadow),
-        borderRadius: BorderRadius.circular(AppSizes.radius),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
