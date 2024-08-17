@@ -66,9 +66,10 @@ Future<String> putResponse(
     if (token != null) "Authorization": "Bearer $token"
   };
 
+
   try {
     final response = await http
-        .post(uriUrl, body: payload == null ? null : jsonEncode(payload), headers: header);
+        .put(uriUrl, body: payload == null ? null : jsonEncode(payload), headers: header);
     logger.i("putResponse body: ${response.body}");
     return response.body;
   } on TimeoutException {
