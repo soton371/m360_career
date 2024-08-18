@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "742032915928",
+    "project_id": "m360career",
+    "storage_bucket": "m360career.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742032915928:android:1ec0cad16cedeb5e0846ad",
+        "android_client_info": {
+          "package_name": "com.m360ict.m360career"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEgsJ4RSTrEkefeYA9a3uR6Ekn4dyNiCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
