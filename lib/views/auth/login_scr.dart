@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:m360_career/blocs/blocs.dart';
 import 'package:m360_career/routes/app_routes.dart';
+import 'package:m360_career/services/services.dart';
 import '../../configs/configs.dart';
 import '../../utilities/utilities.dart';
 import '../../widgets/widgets.dart';
@@ -138,7 +139,7 @@ class LoginScreen extends StatelessWidget {
               FadeInUp(
                 child: FilledButton.tonalIcon(
                     onPressed: () {
-                      appLoader(context);
+                      GoogleAuthService.signInWithGoogle();
                     },
                     icon: Image.asset(
                       kGooglePng,
