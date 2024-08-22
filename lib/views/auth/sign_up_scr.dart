@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import '../../blocs/blocs.dart';
@@ -45,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
         child: Form(
           key: formKey,
           child: ListView(
-            padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+            padding: const EdgeInsets.all(AppSizes.bodyPadding),
             children: [
               FadeInUp(
                 child: const AuthHeader(
@@ -53,8 +52,8 @@ class SignUpScreen extends StatelessWidget {
                     subtitle:
                         "Please complete your profile. Don't worry, your data will remain private and only you can see it."),
               ),
-              SizedBox(
-                height: AppSizes.bodyPadding.h * 2,
+              const SizedBox(
+                height: AppSizes.bodyPadding * 2,
               ),
               //for name
               FadeInUp(
@@ -168,8 +167,8 @@ class SignUpScreen extends StatelessWidget {
               ),
               //end for password
 
-              SizedBox(
-                height: 80.h,
+              const SizedBox(
+                height: 80,
               ),
 
               FadeInUp(
@@ -189,7 +188,7 @@ class SignUpScreen extends StatelessWidget {
                       },
                       child: const Text("SIGN UP"))),
 
-              SizedBox(height: AppSizes.bodyPadding.h),
+              const SizedBox(height: AppSizes.bodyPadding),
 
               FadeInUp(
                 child: Wrap(

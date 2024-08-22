@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../configs/configs.dart';
 
@@ -15,25 +14,25 @@ import '../configs/configs.dart';
     ),
     filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
-            padding: WidgetStatePropertyAll(EdgeInsets.all(14.r)),
+            padding: const WidgetStatePropertyAll(EdgeInsets.all(14)),
             foregroundColor: const WidgetStatePropertyAll(AppColors.filledButtonText),
             backgroundColor: const WidgetStatePropertyAll(AppColors.filledButton),
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius)
             )),
-            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w500,letterSpacing: 0.5, fontSize: 14.sp))
+            textStyle: const WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w500,letterSpacing: 0.5, fontSize: 14))
         )
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          padding: WidgetStatePropertyAll(EdgeInsets.all(14.r)),
+          padding: const WidgetStatePropertyAll(EdgeInsets.all(14)),
             foregroundColor: const WidgetStatePropertyAll(AppColors.container),
             backgroundColor: const WidgetStatePropertyAll(AppColors.seed),
             elevation: const WidgetStatePropertyAll(0),
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius)
             )),
-            textStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w600, letterSpacing: 0.5, fontSize: 14.sp))
+            textStyle: const WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w600, letterSpacing: 0.5, fontSize: 14))
         ),
     ),
     appBarTheme: const AppBarTheme(

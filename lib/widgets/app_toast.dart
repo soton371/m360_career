@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:m360_career/configs/configs.dart';
 
@@ -12,7 +11,7 @@ class CustomToast extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(24),
-      margin: EdgeInsets.symmetric(horizontal: 30.w),
+      margin: const EdgeInsets.symmetric(horizontal: 30),
       decoration: BoxDecoration(
         color: AppColors.container,
         border: Border.all(color: AppColors.shadow),
@@ -21,21 +20,21 @@ class CustomToast extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          HugeIcon(
+          const HugeIcon(
             icon: HugeIcons.strokeRoundedCheckmarkBadge01,
             color: AppColors.seed,
-            size: 60.0.r,
+            size: 60.0,
           ),
-          SizedBox(height: 15.h,),
+          const SizedBox(height: 15,),
           Text(title,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 22.sp,
+            style: const TextStyle(
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: AppColors.seed
             ),
           ),
-          SizedBox(height: 8.h,),
+          const SizedBox(height: 8,),
           Text(
             message,
             textAlign: TextAlign.center,

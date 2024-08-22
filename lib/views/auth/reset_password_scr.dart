@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:m360_career/blocs/blocs.dart';
@@ -40,7 +39,7 @@ class ResetPasswordScreen extends StatelessWidget {
         child: Form(
           key: formKey,
           child: ListView(
-            padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+            padding: EdgeInsets.all(AppSizes.bodyPadding),
             children: [
               FadeInUp(
                 child: const AuthHeader(
@@ -49,7 +48,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     "Save the new password in a safe place, if you forgot it then you have to do a forgot password again."),
               ),
               SizedBox(
-                height: 80.h,
+                height: 80,
               ),
               FadeInUp(
                 child: ValueListenableBuilder(
@@ -87,7 +86,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     }),
               ),
               SizedBox(
-                height: 15.h,
+                height: 15,
               ),
               FadeInUp(
                 child: ValueListenableBuilder(
@@ -129,7 +128,7 @@ class ResetPasswordScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+        padding: EdgeInsets.all(AppSizes.bodyPadding),
         child: ElevatedButton(
             onPressed: () {
               final currentState = formKey.currentState;
@@ -138,24 +137,6 @@ class ResetPasswordScreen extends StatelessWidget {
                   "password": passwordCon2.text.trim()
                 }));
               }
-              // appDialog(context,
-              //     title: "Welcome Back!",
-              //     msg:
-              //     "You have successfully reset and created a new password.",
-              //     isSuccess: true,
-              //     actions: [
-              //       SizedBox(
-              //         width: double.maxFinite,
-              //         child: ElevatedButton(
-              //             style: ElevatedButton.styleFrom(
-              //                 shape: RoundedRectangleBorder(
-              //                     borderRadius: BorderRadius.circular(100))),
-              //             onPressed: () {
-              //               context.goNamed(RouteNames.home);
-              //             },
-              //             child: const Text("Go to Home")),
-              //       )
-              //     ]);
             },
             child: const Text("CONTINUE")),
       ),

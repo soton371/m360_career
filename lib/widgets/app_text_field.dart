@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../configs/configs.dart';
 
@@ -26,12 +25,12 @@ class AppTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label,style: TextStyle(
+        Text(label,style: const TextStyle(
           color: AppColors.title,
           fontWeight: FontWeight.w600,
-          fontSize: 13.sp
+          fontSize: 13
         ),),
-        SizedBox(height: 5.h,),
+        const SizedBox(height: 5),
         Container(
           decoration: BoxDecoration(
               boxShadow: AppColors.boxShadow
@@ -49,7 +48,7 @@ class AppTextField extends StatelessWidget {
               isDense: true,
               filled: true,
               fillColor: AppColors.container,
-              hintStyle: TextStyle(fontWeight: FontWeight.normal,color: AppColors.hint, fontSize: 15.sp),
+              hintStyle: const TextStyle(fontWeight: FontWeight.normal,color: AppColors.hint, fontSize: 15),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(AppSizes.radius),
                 borderSide: BorderSide.none,

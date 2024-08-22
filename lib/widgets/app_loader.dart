@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../configs/configs.dart';
@@ -10,21 +9,21 @@ Future<void> appLoader(BuildContext context, {String? msg}) async {
     content: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(height: 8.h,),
-        SpinKitCircle(
+        const SizedBox(height: 8,),
+        const SpinKitCircle(
           color: AppColors.seed,
-          size: 70.0.r,
+          size: 70.0,
         ),
-        SizedBox(height: 15.h,),
+        const SizedBox(height: 15,),
         Text(
           msg ?? 'Please waiting a moment, we are preparing for you..',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 15.sp,
+          style: const TextStyle(
+            fontSize: 15,
             fontWeight: FontWeight.w500
           ),
         ),
-        SizedBox(height: 8.h,),
+        const SizedBox(height: 8,),
       ],
     ),
   );

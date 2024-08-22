@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hugeicons/hugeicons.dart';
 import '../configs/configs.dart';
 
@@ -18,20 +17,20 @@ Future<void> appDialog(BuildContext context,
         HugeIcon(
           icon: isSuccess == true ? HugeIcons.strokeRoundedCheckmarkBadge01 : HugeIcons.strokeRoundedSadDizzy,
           color: AppColors.seed,
-          size: 60.0.r,
+          size: 60.0,
         ),
-        SizedBox(height: 15.h,),
+        const SizedBox(height: 15,),
         Text(
           title ?? (isSuccess == true? 'Success!' :
           'Sorry!'),
           textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 22.sp,
+          style: const TextStyle(
+              fontSize: 22,
               fontWeight: FontWeight.bold,
             color: AppColors.seed
           ),
         ),
-        SizedBox(height: 8.h,),
+        const SizedBox(height: 8,),
         Text(
           msg,
           textAlign: TextAlign.center,

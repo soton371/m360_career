@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:m360_career/configs/configs.dart';
 
 class AppColors{
@@ -17,8 +16,8 @@ class AppColors{
   static List<BoxShadow> boxShadow = [
     BoxShadow(
         color: shadow,
-        spreadRadius: 1.r,
-        offset: Offset(0, 1.r),
+        spreadRadius: 1,
+        offset: const Offset(0, 1),
         blurRadius: AppSizes.radius)
   ];
 }

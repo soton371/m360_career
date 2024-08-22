@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:m360_career/blocs/blocs.dart';
 import 'package:m360_career/configs/app_urls.dart';
@@ -34,15 +33,15 @@ class ForgotPasswordScreen extends StatelessWidget {
           }
         },
         child: ListView(
-          padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+          padding: const EdgeInsets.all(AppSizes.bodyPadding),
           children: [
             FadeInUp(
                 child: const AuthHeader(
                     title: "Forgot Password🔑",
                     subtitle:
                     "Enter your email address to get an OTP code to reset your password.")),
-            SizedBox(
-              height: 80.h,
+            const SizedBox(
+              height: 80,
             ),
             FadeInUp(
               child: Form(
@@ -71,7 +70,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+        padding: const EdgeInsets.all(AppSizes.bodyPadding),
         child: ElevatedButton(
             onPressed: () {
               logger.d('message');

@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../cubits/cubits.dart';
 import '../../routes/app_routes.dart';
@@ -57,7 +56,7 @@ class OtpScreen extends StatelessWidget {
             }
           },
           child: ListView(
-            padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+            padding: const EdgeInsets.all(AppSizes.bodyPadding),
             children: [
               FadeInUp(
                 child: const AuthHeader(
@@ -65,8 +64,8 @@ class OtpScreen extends StatelessWidget {
                     subtitle:
                     "We have sent the OTP verification code to your email address. Check your email and enter the code below."),
               ),
-              SizedBox(
-                height: 80.h,
+              const SizedBox(
+                height: 80,
               ),
               FadeInUp(
                 child: Pinput(
@@ -92,8 +91,8 @@ class OtpScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 80.h,
+              const SizedBox(
+                height: 80,
               ),
               FadeInUp(
                 child: const Text(

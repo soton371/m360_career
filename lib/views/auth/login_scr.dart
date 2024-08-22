@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:m360_career/blocs/blocs.dart';
@@ -38,7 +37,7 @@ class LoginScreen extends StatelessWidget {
         child: Form(
           key: formKey,
           child: ListView(
-            padding: EdgeInsets.all(AppSizes.bodyPadding.r),
+            padding: const EdgeInsets.all(AppSizes.bodyPadding),
             children: [
               FadeInUp(
                 child: const AuthHeader(
@@ -47,8 +46,8 @@ class LoginScreen extends StatelessWidget {
                         "Unlock M360ICT job opportunities. Login to get started."),
               ),
 
-              SizedBox(
-                height: 80.h,
+              const SizedBox(
+                height: 80,
               ),
 
               //for email
@@ -121,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                         child: const Text("Forgot Password?"))),
               ),
 
-              SizedBox(height: AppSizes.bodyPadding.h * 2),
+              const SizedBox(height: AppSizes.bodyPadding * 2),
 
               FadeInUp(
                   child: ElevatedButton(
@@ -134,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                       },
                       child: const Text("LOGIN"))),
 
-              SizedBox(height: AppSizes.bodyPadding.h),
+              const SizedBox(height: AppSizes.bodyPadding),
 
               FadeInUp(
                 child: FilledButton.tonalIcon(
@@ -143,12 +142,12 @@ class LoginScreen extends StatelessWidget {
                     },
                     icon: Image.asset(
                       kGooglePng,
-                      height: 14.r,
+                      height: 14,
                     ),
                     label: const Text('SIGN IN WITH GOOGLE')),
               ),
 
-              SizedBox(height: AppSizes.bodyPadding.h),
+              const SizedBox(height: AppSizes.bodyPadding),
 
               FadeInUp(
                 child: Wrap(

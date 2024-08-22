@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../configs/configs.dart';
 
 class AuthHeader extends StatelessWidget {
@@ -17,13 +16,13 @@ class AuthHeader extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppColors.title),
         ),
-        SizedBox(
-          height: 5.h,
+        const SizedBox(
+          height: 5,
         ),
         Text(subtitle,
           textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 13.sp
+          style: const TextStyle(
+              fontSize: 13
           ),
         ),
       ],
