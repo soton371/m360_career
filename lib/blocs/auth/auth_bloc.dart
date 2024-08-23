@@ -130,7 +130,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       logger.f("message call DoLogin");
       final req = await postResponse(url: AppUrls.login, payload: {
         "email": event.email.trim(),
-        "password": hashString(event.password.trim())
+        "password": event.password.trim()
       });
 
       final ApiResponseModel<UserInfoModel> response = appParseJson(req, (fromJsonT)=>UserInfoModel.fromJson(fromJsonT));
